@@ -61,12 +61,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Import.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Import.Designer.cs">
-      <DependentUpon>Import.cs</DependentUpon>
-    </Compile>
     <Compile Include="ImportData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,9 +81,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Import.resx">
-      <DependentUpon>Import.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImportData.resx">
       <DependentUpon>ImportData.cs</DependentUpon>
