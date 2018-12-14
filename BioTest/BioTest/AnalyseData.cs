@@ -33,8 +33,8 @@ namespace BioTest
             gridHeight = Grid.Height;
             gridWidth = Grid.Width;
 
-            colourDictPath = @"H:\Documents\GitHub\Challenge_BioinformaticsProject_Repo\BioTest\ColourDict.csv";
-            dataPath = @"H:\Documents\GitHub\Challenge_BioinformaticsProject_Repo\BioTest\Data.csv";
+            colourDictPath = @"C: \Users\Bertie\Documents\GitHub\Challenge_BioinformaticsProject\BioTest\ColourDict.csv";
+            dataPath = @"C:\Users\Bertie\Documents\GitHub\Challenge_BioinformaticsProject\BioTest\Data.csv";
 
             using (sr = new StreamReader(colourDictPath))
             {
@@ -79,7 +79,7 @@ namespace BioTest
                     Grid.Rows[j].HeaderCell.Value = elements[0];
 
                     for (int i = 0; i < numberOfColumns; i++)
-                    {
+                    {                
                         Grid.Rows[j].Height = cellHeight;
                         Grid.Columns[i].Width = cellWidth;
                         Grid.Rows[j].Cells[i].Style.BackColor = ValueToColour(elements[i + 1]);

@@ -36,10 +36,11 @@
             // 
             // Return_To_Menu
             // 
-            this.Return_To_Menu.Location = new System.Drawing.Point(12, 12);
+            this.Return_To_Menu.Location = new System.Drawing.Point(16, 15);
+            this.Return_To_Menu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Return_To_Menu.Name = "Return_To_Menu";
             this.Return_To_Menu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Return_To_Menu.Size = new System.Drawing.Size(75, 23);
+            this.Return_To_Menu.Size = new System.Drawing.Size(100, 28);
             this.Return_To_Menu.TabIndex = 1;
             this.Return_To_Menu.Text = "Back";
             this.Return_To_Menu.UseVisualStyleBackColor = true;
@@ -48,19 +49,21 @@
             // Grid
             // 
             this.Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Grid.Location = new System.Drawing.Point(213, 12);
+            this.Grid.Location = new System.Drawing.Point(284, 15);
+            this.Grid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Grid.Name = "Grid";
             this.Grid.RowHeadersWidth = 10;
             this.Grid.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.Grid.Size = new System.Drawing.Size(800, 600);
+            this.Grid.Size = new System.Drawing.Size(1067, 738);
             this.Grid.TabIndex = 2;
             this.Grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Refresh_Grid
             // 
-            this.Refresh_Grid.Location = new System.Drawing.Point(12, 68);
+            this.Refresh_Grid.Location = new System.Drawing.Point(16, 84);
+            this.Refresh_Grid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Refresh_Grid.Name = "Refresh_Grid";
-            this.Refresh_Grid.Size = new System.Drawing.Size(75, 23);
+            this.Refresh_Grid.Size = new System.Drawing.Size(100, 28);
             this.Refresh_Grid.TabIndex = 3;
             this.Refresh_Grid.Text = "Refresh";
             this.Refresh_Grid.UseVisualStyleBackColor = true;
@@ -68,12 +71,13 @@
             // 
             // AnalyseData
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1270, 662);
+            this.ClientSize = new System.Drawing.Size(1693, 815);
             this.Controls.Add(this.Refresh_Grid);
             this.Controls.Add(this.Grid);
             this.Controls.Add(this.Return_To_Menu);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "AnalyseData";
             this.Text = "AnalyseData";
             this.Load += new System.EventHandler(this.AnalyseData_Load);
