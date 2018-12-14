@@ -23,7 +23,7 @@ namespace BioTest
 
         private void ModifyData_Load(object sender, EventArgs e)
         {
-         Bertie's-Special-Place
+         
             MySqlConnection con = new MySqlConnection(connectionString);
             try
             { 
@@ -45,7 +45,7 @@ namespace BioTest
                 MessageBox.Show(ex.ToString());
             }
 
-            /*
+            
 
         }
         private void Return_To_Menu_Click(object sender, EventArgs e)
