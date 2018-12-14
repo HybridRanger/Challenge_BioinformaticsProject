@@ -113,7 +113,6 @@ namespace BioTest
                 {
                     string[] values = line.Split(',');
                     sqlInsert += "(NULL,'" + values[0] + "','" + values[0] + "'),";
-                    //MessageBox.Show(sqlInsert);
                 }
 
                 sqlInsert.Remove(sqlInsert.Length - 1, 1);
