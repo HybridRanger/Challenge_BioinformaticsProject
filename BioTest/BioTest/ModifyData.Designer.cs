@@ -35,6 +35,8 @@
             this.Temp = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.ListView = new System.Windows.Forms.ListView();
+            this.Tables = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Return_To_Menu
@@ -97,17 +99,36 @@
             // 
             // ListView
             // 
-            this.ListView.Location = new System.Drawing.Point(206, 107);
+            this.ListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Tables});
+            this.ListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.ListView.Location = new System.Drawing.Point(45, 180);
             this.ListView.Name = "ListView";
-            this.ListView.Size = new System.Drawing.Size(84, 352);
+            this.ListView.Size = new System.Drawing.Size(273, 332);
             this.ListView.TabIndex = 9;
             this.ListView.UseCompatibleStateImageBehavior = false;
+            this.ListView.View = System.Windows.Forms.View.Tile;
+            // 
+            // Tables
+            // 
+            this.Tables.Text = "Tables";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.label1.Location = new System.Drawing.Point(52, 136);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(266, 29);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Tables in the Database:";
             // 
             // ModifyData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(928, 684);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.ListView);
             this.Controls.Add(this.Temp);
             this.Controls.Add(this.DeleteDataButton);
@@ -132,5 +153,7 @@
         private System.Windows.Forms.Label Temp;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ListView ListView;
+        private System.Windows.Forms.ColumnHeader Tables;
+        private System.Windows.Forms.Label label1;
     }
 }

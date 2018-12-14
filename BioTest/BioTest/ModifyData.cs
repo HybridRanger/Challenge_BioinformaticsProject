@@ -64,6 +64,7 @@ namespace BioTest
                 try
                 {
                     string text = File.ReadAllText(file);
+                    MessageBox.Show(text);
                     CreateTable(text, openFileDialog1.SafeFileName.Split('.')[0].Replace(" ", string.Empty));
                 }
                 catch (IOException ex)
@@ -93,28 +94,41 @@ namespace BioTest
             {
                 conn.Open();
 
+                string drop = "DROP TABLE IF EXISTS " + name + ";";
                 string sql = "CREATE TABLE IF NOT EXISTS " + name + " (" +
                     "Id INT UNSIGNED NOT NULL AUTO_INCREMENT," +
                     "ProbeName VARCHAR(30) NOT NULL DEFAULT ''," +
                     "LogRatio DECIMAL(6, 5) NOT NULL DEFAULT 0.00000," +
                     "PRIMARY KEY (ID));";
 
+                MySqlCommand dropTable = new MySqlCommand(drop, conn);
+                dropTable.ExecuteNonQuery();
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
-                MySqlDataReader rdr = cmd.ExecuteReader();
+                cmd.ExecuteNonQuery();
 
-                while (rdr.Read())
+                string[] lines = text.Split('\n');
+                string sqlInsert = "INSERT INTO " + name;
+
+                foreach (string line in lines)
                 {
-                    MessageBox.Show(Convert.ToString(rdr[0]));
+                    string[] values = line.Split(',');
+                    //sqlInsert += "(" + values[0] + "," + float.Parse(values[1]) + "),";
+                    MessageBox.Show("text: " + text);
                 }
-                rdr.Close();
+
+                sqlInsert += "( , );";
+
+                //MessageBox.Show(sqlInsert);
+
+
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
 
-            string[] lines = text.Split('\n');
-
+            conn.Close();
         }
     }
 }
