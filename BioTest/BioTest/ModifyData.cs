@@ -15,7 +15,7 @@ namespace BioTest
 {
     public partial class ModifyData : Form
     {
-        private string connectionString = "server=localhost;user=root;database=challenge;";
+        private string connectionString = "server=localhost;user=root;database=mice_cancer;";
         public ModifyData()
         {
             InitializeComponent();
@@ -23,6 +23,29 @@ namespace BioTest
 
         private void ModifyData_Load(object sender, EventArgs e)
         {
+         Bertie's-Special-Place
+            MySqlConnection con = new MySqlConnection(connectionString);
+            try
+            { 
+                con.Open();
+
+                string sql = "SHOW TABLES";
+
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+                MySqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    ListView.Items.Add(Convert.ToString(rdr[0]), 3);
+                }
+                rdr.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+            /*
 
         }
         private void Return_To_Menu_Click(object sender, EventArgs e)
@@ -64,6 +87,7 @@ namespace BioTest
 
         private void CreateTable(string text, string name)
         {
+         Dev
             MySqlConnection conn = new MySqlConnection(connectionString);
             try
             {
