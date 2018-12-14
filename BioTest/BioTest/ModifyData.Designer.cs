@@ -35,6 +35,7 @@
             this.DataList = new System.Windows.Forms.ListView();
             this.DeleteDataButton = new System.Windows.Forms.Button();
             this.Temp = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // Return_To_Menu
@@ -103,6 +104,10 @@
             this.Temp.TabIndex = 8;
             this.Temp.Text = "label1";
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // ModifyData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -132,5 +137,6 @@
         private System.Windows.Forms.ListView DataList;
         private System.Windows.Forms.Button DeleteDataButton;
         private System.Windows.Forms.Label Temp;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

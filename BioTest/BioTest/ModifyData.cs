@@ -14,7 +14,7 @@ namespace BioTest
 {
     public partial class ModifyData : Form
     {
-        private string connectionString = "server=localhost;database=challenge;";
+        private string connectionString = "server=localhost;user=root;database=challenge;";
         public ModifyData()
         {
             InitializeComponent();
@@ -22,7 +22,32 @@ namespace BioTest
 
         private void ModifyData_Load(object sender, EventArgs e)
         {
+            /*
             MySqlConnection conn = new MySqlConnection(connectionString);
+            try
+            {
+                conn.Open();
+
+                string sql = "CREATE TABLE IF NOT EXISTS test (" +
+                    "Id INT UNSIGNED NOT NULL AUTO_INCREMENT," +
+                    "ProbeName VARCHAR(30) NOT NULL DEFAULT ''," +
+                    "LogRatio DECIMAL(6, 5) NOT NULL DEFAULT 0.00000," +
+                    "PRIMARY KEY (ID));";
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    MessageBox.Show(Convert.ToString(rdr[0]));
+                }
+                rdr.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            */
         }
         private void Return_To_Menu_Click(object sender, EventArgs e)
         {
@@ -32,7 +57,12 @@ namespace BioTest
 
         private void NewData_Click(object sender, EventArgs e)
         {
+            DialogResult result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
 
+            }
+            MessageBox.Show(Convert.ToString(result));
         }
 
         private void Modify_Data_Click(object sender, EventArgs e)
