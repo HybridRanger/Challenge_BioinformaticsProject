@@ -88,7 +88,6 @@ namespace BioTest
 
         private void CreateTable(string text, string name)
         {
-         Dev
             MySqlConnection conn = new MySqlConnection(connectionString);
             try
             {
