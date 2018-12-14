@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using System.IO;
 
 namespace BioTest
 {
@@ -22,13 +23,53 @@ namespace BioTest
 
         private void ModifyData_Load(object sender, EventArgs e)
         {
-            /*
+
+        }
+        private void Return_To_Menu_Click(object sender, EventArgs e)
+        {
+            this.Owner.Show();
+            this.Close();
+        }
+
+        private void NewData_Click(object sender, EventArgs e)
+        {
+            DialogResult result = openFileDialog1.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                string file = openFileDialog1.FileName;
+                try
+                {
+                    string text = File.ReadAllText(file);
+                    CreateTable(text, openFileDialog1.SafeFileName.Split('.')[0].Replace(" ", string.Empty));
+                }
+                catch (IOException ex)
+                {
+                    MessageBox.Show(Convert.ToString(ex));
+                }
+               
+            }
+            
+        }
+
+        private void Modify_Data_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TableList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CreateTable(string text, string name)
+        {
             MySqlConnection conn = new MySqlConnection(connectionString);
             try
             {
                 conn.Open();
 
-                string sql = "CREATE TABLE IF NOT EXISTS test (" +
+                string sql = "CREATE TABLE IF NOT EXISTS " + name + " (" +
                     "Id INT UNSIGNED NOT NULL AUTO_INCREMENT," +
                     "ProbeName VARCHAR(30) NOT NULL DEFAULT ''," +
                     "LogRatio DECIMAL(6, 5) NOT NULL DEFAULT 0.00000," +
@@ -47,31 +88,8 @@ namespace BioTest
             {
                 MessageBox.Show(ex.ToString());
             }
-            */
-        }
-        private void Return_To_Menu_Click(object sender, EventArgs e)
-        {
-            this.Owner.Show();
-            this.Close();
-        }
 
-        private void NewData_Click(object sender, EventArgs e)
-        {
-            DialogResult result = openFileDialog1.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-
-            }
-            MessageBox.Show(Convert.ToString(result));
-        }
-
-        private void Modify_Data_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TableList_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            string[] lines = text.Split('\n');
 
         }
     }
