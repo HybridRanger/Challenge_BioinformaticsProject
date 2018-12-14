@@ -15,7 +15,7 @@ namespace BioTest
 {
     public partial class ModifyData : Form
     {
-        private string connectionString = "server=localhost;user=root;database=mice_cancer;";
+        private string connectionString = "server=localhost;user=root;database=challenge;";
         public ModifyData()
         {
             InitializeComponent();
@@ -64,7 +64,7 @@ namespace BioTest
                 try
                 {
                     string text = File.ReadAllText(file);
-                    MessageBox.Show(text);
+                    //MessageBox.Show(text);
                     CreateTable(text, openFileDialog1.SafeFileName.Split('.')[0].Replace(" ", string.Empty));
                 }
                 catch (IOException ex)
@@ -97,7 +97,7 @@ namespace BioTest
                 string sql = "CREATE TABLE IF NOT EXISTS " + name + " (" +
                     "Id INT UNSIGNED NOT NULL AUTO_INCREMENT," +
                     "ProbeName VARCHAR(30) NOT NULL DEFAULT ''," +
-                    "LogRatio DECIMAL(6, 5) NOT NULL DEFAULT 0.00000," +
+                    "LogRatio VARCHAR(30) NOT NULL DEFAULT ''," +
                     "PRIMARY KEY (ID));";
 
                 MySqlCommand dropTable = new MySqlCommand(drop, conn);
@@ -105,21 +105,24 @@ namespace BioTest
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
 
+
                 string[] lines = text.Split('\n');
-                string sqlInsert = "INSERT INTO " + name;
+                string sqlInsert = "INSERT INTO " + name + " VALUES ";
 
                 foreach (string line in lines)
                 {
                     string[] values = line.Split(',');
-                    //sqlInsert += "(" + values[0] + "," + float.Parse(values[1]) + "),";
-                    MessageBox.Show("text: " + text);
+                    sqlInsert += "(NULL,'" + values[0] + "','" + values[0] + "'),";
+                    //MessageBox.Show(sqlInsert);
                 }
 
-                sqlInsert += "( , );";
+                sqlInsert.Remove(sqlInsert.Length - 1, 1);
+                sqlInsert += "(NULL,'thing1', 'thing2');";
 
-                //MessageBox.Show(sqlInsert);
+                MessageBox.Show(sqlInsert);
 
-
+                MySqlCommand insertIntoTable = new MySqlCommand(sqlInsert, conn);
+                insertIntoTable.ExecuteNonQuery();
 
             }
             catch (Exception ex)
@@ -128,6 +131,7 @@ namespace BioTest
             }
 
             conn.Close();
+
         }
     }
 }

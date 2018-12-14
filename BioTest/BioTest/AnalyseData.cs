@@ -33,8 +33,8 @@ namespace BioTest
             gridHeight = Grid.Height;
             gridWidth = Grid.Width;
 
-            colourDictPath = @"C: \Users\Bertie\Documents\GitHub\Challenge_BioinformaticsProject\BioTest\ColourDict.csv";
-            dataPath = @"C:\Users\Bertie\Documents\GitHub\Challenge_BioinformaticsProject\BioTest\Data.csv";
+            colourDictPath = @"H:\Documents\GitHub\Challenge_BioinformaticsProject\BioTest\ColourDict.csv";
+            dataPath = @"H:\Documents\GitHub\Challenge_BioinformaticsProject\BioTest\Data.csv";
 
             using (sr = new StreamReader(colourDictPath))
             {
