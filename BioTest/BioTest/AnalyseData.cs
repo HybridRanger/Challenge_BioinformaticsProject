@@ -17,8 +17,10 @@ namespace BioTest
         private int numberOfColours;
         private int cellHeight, cellWidth;
         private int gridHeight, gridWidth;
-        private int numberOfColumns = 10, numberOfRows = 10;
-        private StreamReader sr = new StreamReader(@"H:\Documents\GitHub\Challenge_BioinformaticsProject_Repo\BioTest\Data.csv");
+        private int headerHeight = 50, headerWidth = 80;
+        private int numberOfColumns = 50, numberOfRows = 50;
+        private StreamReader sr;
+        private string colourDictPath, dataPath;
         private Dictionary<int, Color> colourDictionary = new Dictionary<int, Color>();
 
         public AnalyseData()
@@ -31,17 +33,20 @@ namespace BioTest
             gridHeight = Grid.Height;
             gridWidth = Grid.Width;
 
-            colourDictionary.Add(0, Color.FromArgb(107, 1, 24));
-            colourDictionary.Add(1, Color.FromArgb(182, 22, 37));
-            colourDictionary.Add(2, Color.FromArgb(224, 94, 72));
-            colourDictionary.Add(3, Color.FromArgb(255, 171, 134));
-            colourDictionary.Add(4, Color.FromArgb(254, 221, 204));
-            colourDictionary.Add(5, Color.FromArgb(255, 255, 255));
-            colourDictionary.Add(6, Color.FromArgb(216, 241, 251));
-            colourDictionary.Add(7, Color.FromArgb(153, 205, 232));
-            colourDictionary.Add(8, Color.FromArgb(67, 152, 206));
-            colourDictionary.Add(9, Color.FromArgb(30, 103, 167));
-            colourDictionary.Add(10, Color.FromArgb(16, 47, 91));
+            colourDictPath = @"H:\Documents\GitHub\Challenge_BioinformaticsProject_Repo\BioTest\ColourDict.csv";
+            dataPath = @"H:\Documents\GitHub\Challenge_BioinformaticsProject_Repo\BioTest\Data.csv";
+
+            using (sr = new StreamReader(colourDictPath))
+            {
+                string[] colours = sr.ReadToEnd().Split('\n');
+                int i = 0;
+                foreach (string colour in colours)
+                {
+                    string[] values = colour.Split(',');
+                    colourDictionary.Add(i, Color.FromArgb(255, Convert.ToInt16(values[0]), Convert.ToInt16(values[1]), Convert.ToInt16(values[2])));
+                    i++;
+                }
+            }
 
             numberOfColours = colourDictionary.Count;
         }
@@ -49,8 +54,9 @@ namespace BioTest
         private void Refresh_Grid_Click(object sender, EventArgs e)
         {
             Grid.ColumnCount = numberOfColumns;
+            Grid.RowCount = numberOfRows;
 
-            using (sr)
+            using (sr = new StreamReader(dataPath))
             {
                 DataGridViewRow gridRow = (DataGridViewRow)Grid.Rows[0].Clone();
 
@@ -58,41 +64,26 @@ namespace BioTest
 
                 string[] lines = file.Split('\n');
 
-                cellHeight = gridHeight / numberOfRows;
-                cellWidth = gridWidth / numberOfColumns;
+                cellHeight = (gridHeight - headerHeight) / numberOfRows;
+                cellWidth = (gridWidth - headerWidth) / numberOfColumns;
 
-                for (int i = 0; i < numberOfRows; i++)
+                string[] header = lines[0].Split(',');
+
+                Grid.TopLeftHeaderCell.Value = header[0];
+                Grid.RowHeadersWidth = headerWidth;
+                Grid.ColumnHeadersHeight = headerHeight;
+
+                for (int j = 0; j < numberOfRows; j++)
                 {
-                    string line = lines[i];
-                    gridRow = (DataGridViewRow)Grid.Rows[i].Clone();
+                    string[] elements = lines[j+1].Split(',');
+                    Grid.Rows[j].HeaderCell.Value = elements[0];
 
-                    string[] lineElements = line.Split(',');
-
-                    for (int j = 0; j < numberOfColumns; j++)
+                    for (int i = 0; i < numberOfColumns; i++)
                     {
-                        string element = lineElements[j];
-
-                        if (i == 0 && j == 0)
-                        {
-                            Grid.TopLeftHeaderCell.Value = element;
-                        }
-                        else if (j == 0 && i != 0)
-                        {
-                            Grid.Rows[i].HeaderCell.Value = element;
-                            Grid.Rows[i].Height = cellHeight;
-                        }
-                        else if (i == 0 && j != 0)
-                        {
-                            Grid.Columns[j].Width = cellWidth;
-                        }
-                        else
-                        {
-                            Grid.Columns[j].Width = cellWidth;
-                            gridRow.Cells[j].Style.BackColor = ValueToColour(element);
-                        }
-
+                        Grid.Rows[j].Height = cellHeight;
+                        Grid.Columns[i].Width = cellWidth;
+                        Grid.Rows[j].Cells[i].Style.BackColor = ValueToColour(elements[i + 1]);
                     }
-                    Grid.Rows.Add(gridRow);
                 }
             }
         }
@@ -110,7 +101,6 @@ namespace BioTest
 
         private Color ValueToColour(string stringValue)
         {
-
             float floatValue = float.Parse(stringValue, System.Globalization.CultureInfo.InvariantCulture);
             float step = (max-min)/numberOfColours;
 
